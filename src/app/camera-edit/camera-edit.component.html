@@ -1,0 +1,61 @@
+<h2 class="page-title">Modifica Camera</h2>
+
+<div *ngIf="loading">Caricamento...</div>
+
+<div class="card" *ngIf="camera">
+  <form class="form">
+
+    <div class="form-group">
+      <label>Numero Camera</label>
+      <input
+        type="text"
+        [(ngModel)]="camera.numeroCamera"
+        name="numeroCamera">
+    </div>
+
+    <div class="form-group">
+      <label>Tipo Camera</label>
+      <select
+        [(ngModel)]="camera.tipoCamera"
+        name="tipoCamera">
+        <option value="SINGOLA">Singola</option>
+        <option value="MATRIMONIALE">Matrimoniale</option>
+        <option value="TRIPLA">Tripla</option>
+        <option value="SUITE">Suite</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Occupanti</label>
+      <input
+        type="number"
+        [(ngModel)]="camera.maxOcppupanti"
+        name="maxOcppupanti">
+    </div>
+
+    <div class="form-group">
+      <label>Prezzo per notte</label>
+      <input
+        type="number"
+        [(ngModel)]="camera.prezzoPerNotte"
+        name="prezzoPerNotte">
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn-primary"
+        (click)="confermaModifica()">
+        Conferma
+      </button>
+
+      <button
+        type="button"
+        class="btn-secondary"
+        (click)="annulla()">
+        Annulla
+      </button>
+    </div>
+
+  </form>
+</div>

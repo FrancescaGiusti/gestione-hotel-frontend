@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== VARIABILI GLOBALI ===== */
+:root {
+  --primary: #2c3e50;      /* blu scuro per header e bottoni principali */
+  --secondary: #c9a24d;    /* beige/oro per dettagli */
+  --background: #f5f6fa;   /* sfondo pagina chiaro */
+  --text: #2d3436;          /* testo principale scuro */
+  --danger: #c0392b;        /* rosso per cancellazioni */
+  --table-header: #34495e;  /* colore header tabelle */
+  --table-row-hover: #ecf0f1; /* hover riga tabella */
+}
+
+/* ===== RESET E BODY ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 20px;
+}
+
+/* ===== TITOLI ===== */
+h1 {
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+/* ===== SELECT E FORM ELEMENTS ===== */
+label {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+/* ===== TABELLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--table-header);
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+tbody tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+/* ===== BOTTONI ===== */
+button {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* ===== PAGINAZIONE ===== */
+div > button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

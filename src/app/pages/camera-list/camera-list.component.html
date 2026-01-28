@@ -1,0 +1,66 @@
+<h1>Elenco Camere:</h1>
+
+<div *ngIf="loading">Caricamento...</div>
+<div *ngIf="error">Errore nel caricamento delle camere</div>
+
+<label for="tipoCamera">Tipo Camera:</label>
+<select id="tipoCamera" #tipoSelect (change)="filtraPerTipo(tipoSelect.value)">
+  <option value="">Tutte</option>
+  <option value="SINGOLA">Singola</option>
+  <option value="MATRIMONIALE">Matrimoniale</option>
+  <option value="TRIPLA">Tripla</option>
+  <option value="SUITE">Suite</option>
+</select>
+
+<table *ngIf="camere.length > 0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Numero</th>
+      <th>Tipo</th>
+      <th>Occupanti</th>
+      <th>Prezzo</th>
+      <th>Hotel</th>
+      <th>Prenotazioni</th>
+      <th>Azioni</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let camera of camere">
+      <td>{{ camera.id }}</td>
+      <td>{{ camera.numeroCamera }}</td>
+      <td>{{ camera.tipoCamera }}</td>
+      <td>{{camera.maxOcppupanti}}</td>
+      <td>{{ camera.prezzoPerNotte }}</td>
+      <td>{{camera.hotel?.nome}}</td>
+      <td>{{camera.prenotazioni}}</td>
+      <td>
+        <button class="btn-danger" (click)="cancellaCamera(camera.id!)">Elimina</button>
+        <button class="btn-secondary" (click)="vaiAModifica(camera.id!)">
+          Modifica
+        </button>
+        <button class="btn-primary"
+          (click)="modificaParzialeCamera(camera.id!, { prezzoPerNotte: camera.prezzoPerNotte + 10 })">
+          Aumenta prezzo +10
+        </button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && camere.length === 0">
+  Nessuna camera disponibile
+</div>
+
+<div>
+  <button (click)="prevPage()" [disabled]="page === 0">
+    Precedente
+  </button>
+
+  <span>Pagina {{ page + 1 }}</span>
+
+  <button (click)="nextPage()">
+    Successiva
+  </button>
+</div>

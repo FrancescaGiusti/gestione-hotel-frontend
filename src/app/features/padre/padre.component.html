@@ -1,0 +1,8 @@
+
+
+<div style="border: solid #f04444 2px; padding: 2rem;">
+    <p>padre works!</p>
+    <input type="text" [(ngModel)]="nome">
+    <app-figlio [miaProprieta]="nome" (currentCount)="incrementa()"></app-figlio>
+    <p>Counter: {{count}}</p>
+</div>
