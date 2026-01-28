@@ -1,15 +1,15 @@
-/* ===== VARIABILI GLOBALI ===== */
+
 :root {
-  --primary: #2c3e50;      /* blu scuro per header e bottoni principali */
-  --secondary: #c9a24d;    /* beige/oro per dettagli */
-  --background: #f5f6fa;   /* sfondo pagina chiaro */
-  --text: #2d3436;          /* testo principale scuro */
-  --danger: #c0392b;        /* rosso per cancellazioni */
-  --table-header: #34495e;  /* colore header tabelle */
-  --table-row-hover: #ecf0f1; /* hover riga tabella */
+  --primary: #2c3e50;      
+  --secondary: #c9a24d;   
+  --background: #f5f6fa;  
+  --text: #2d3436;          
+  --danger: #c0392b;        
+  --table-header: #34495e;  
+  --table-row-hover: #ecf0f1; 
 }
 
-/* ===== RESET E BODY ===== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,13 +24,13 @@ body {
   padding: 20px;
 }
 
-/* ===== TITOLI ===== */
+
 h1 {
   color: var(--primary);
   margin-bottom: 20px;
 }
 
-/* ===== SELECT E FORM ELEMENTS ===== */
+
 label {
   font-weight: 600;
   margin-right: 10px;
@@ -43,7 +43,7 @@ select {
   margin-bottom: 20px;
 }
 
-/* ===== TABELLE ===== */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -71,7 +71,7 @@ tbody tr:hover {
   background-color: var(--table-row-hover);
 }
 
-/* ===== BOTTONI ===== */
+
 button {
   padding: 6px 12px;
   margin-right: 5px;
