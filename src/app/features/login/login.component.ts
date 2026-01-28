@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ServiceLoginService } from '../../services/service-login.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,21 +17,17 @@ export class LoginComponent {
 
   constructor(
     private readonly loginService: ServiceLoginService,
+    private authService: AuthService,
     private readonly router: Router
   ){}
 
-  login(loginForm: any){
-    console.log(loginForm);
-    this.loginService.postLogin(loginForm.value)
-       .subscribe({
-    next: (token: string) => {
-      console.log('JWT ricevuto:', token);
-      localStorage.removeItem(token);
-      localStorage.setItem('token', token); 
-
-      this.router.navigate(['/logged/camere']);
-    },
-    error: (err) => console.error(err)
-      });
+   login(loginForm: any) {
+    this.loginService.postLogin(loginForm.value).subscribe({
+      next: (token: string) => {
+        this.authService.saveToken(token);
+        this.router.navigate(['/logged/camere']);
+      },
+      error: () => alert('Credenziali non valide')
+    });
   }
 }
