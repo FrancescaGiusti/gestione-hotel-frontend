@@ -5,7 +5,7 @@ import { CameraService } from '../../services/camera.service';
 import { CameraFiltroDto } from '../../dto/camera-filtro-dto';
 import { TipoCamera } from '../../dto/tipo-camera';
 import { CameraPatchDto } from '../../dto/camera-patch-dto';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-camera-list',
@@ -24,17 +24,22 @@ export class CameraListComponent implements OnInit {
   size: number = 10;
 
 
-  constructor(private cameraService: CameraService,private router: Router) {}
+  constructor(private cameraService: CameraService,private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.caricaCamere();
+    this.route.queryParams.subscribe(params => {
+    const hotelId = params['hotelId'];
+    if (hotelId) {
+      this.caricaCamere(hotelId ? +hotelId : undefined);
+    }
+  });
   }
 
-  caricaCamere(): void {
+  caricaCamere(hotelId?: number): void {
     this.loading = true; 
     this.error = false;
 
-    this.cameraService.getCamere().subscribe({
+    this.cameraService.getCamere(hotelId).subscribe({
       next: (data) => {
         this.camere = data;
         this.loading = false;

@@ -7,6 +7,7 @@ import { PadreComponent } from './features/padre/padre.component';
 import { CameraListComponent } from './pages/camera-list/camera-list.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CameraEditComponent } from './camera-edit/camera-edit.component';
+import { HotelListComponent } from './pages/hotel-list/hotel-list.component';
 
 export const routes: Routes = [
     {path: "", component: NoFrameComponent, children:[
@@ -17,6 +18,7 @@ export const routes: Routes = [
     {path: "logged", component: FrameComponent,canActivate: [AuthGuard], children:[
         {path:"", redirectTo: "padre", pathMatch: 'full'},
         {path:"padre", component: PadreComponent},
+        {path:"hotel", component: HotelListComponent},
         { path:'camere', component: CameraListComponent },
         { path: 'camere/modifica/:id', component: CameraEditComponent }
         

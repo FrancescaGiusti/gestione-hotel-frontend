@@ -13,7 +13,7 @@ export class HotelService {
 
   constructor(private http: HttpClient) { }
 
-   getHotel(): Observable<HotelDto[]> {
+   getAllHotels(): Observable<HotelDto[]> {
     return this.http.get<HotelDto[]>(this.baseUrl);
   }
 

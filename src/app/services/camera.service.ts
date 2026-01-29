@@ -17,8 +17,9 @@ export class CameraService {
 
   constructor(private http: HttpClient) {}
 
-  getCamere(): Observable<CameraDto[]> {
-  return this.http.get<CameraDto[]>(this.baseUrl);
+  getCamere(hotelId?: number): Observable<CameraDto[]> {
+    const params = hotelId ? {params: { hotelId } } : {};
+  return this.http.get<CameraDto[]>(this.baseUrl, params);
   }
 
   addCamera(camera: CameraDto): Observable<void> {

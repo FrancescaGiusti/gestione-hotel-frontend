@@ -40,7 +40,7 @@ export class AuthService {
   isTokenExpired(token: string): boolean {
     const exp = this.getTokenExpiration(token);
     if (!exp) return true;
-    return Date.now() > exp;
+    return (Date.now()/1000) > exp;
   }
 
   startAutoLogout(token: string) {

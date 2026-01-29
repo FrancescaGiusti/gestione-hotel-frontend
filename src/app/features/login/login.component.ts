@@ -25,7 +25,7 @@ export class LoginComponent {
     this.loginService.postLogin(loginForm.value).subscribe({
       next: (token: string) => {
         this.authService.saveToken(token);
-        this.router.navigate(['/logged/camere']);
+        this.router.navigateByUrl('/logged/hotel');
       },
       error: () => alert('Credenziali non valide')
     });
