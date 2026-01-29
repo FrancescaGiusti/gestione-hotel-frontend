@@ -33,8 +33,23 @@
       <td>{{camera.maxOcppupanti}}</td>
       <td>{{ camera.prezzoPerNotte }}</td>
       <td>{{camera.hotel?.nome}}</td>
-      <td>{{camera.prenotazioni}}</td>
       <td>
+    <div *ngIf="(camera.prenotazioni?.length ?? 0) > 0; else noPrenotazioni">
+      <ul class="prenotazioni-preview">
+        <li *ngFor="let p of camera.prenotazioni">
+          {{ p.dataInizioSoggiorno }} → {{ p.dataFineSoggiorno }}
+        </li>
+      </ul>
+    </div>
+
+    <ng-template #noPrenotazioni>
+      <em>Nessuna prenotazione</em>
+    </ng-template>
+  </td>
+      <td>
+        <button class="btn-primary" (click)="prenota(camera)">
+      Prenota
+    </button>
         <button class="btn-danger" (click)="cancellaCamera(camera.id!)">Elimina</button>
         <button class="btn-secondary" (click)="vaiAModifica(camera.id!)">
           Modifica

@@ -101,6 +101,19 @@ button:hover {
   color: white;
 }
 
+.prenotazioni-preview {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+
+.prenotazioni-preview li {
+  background: #f1f2f6;
+  margin-bottom: 4px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
 /* ===== PAGINAZIONE ===== */
 div > button[disabled] {
   opacity: 0.5;

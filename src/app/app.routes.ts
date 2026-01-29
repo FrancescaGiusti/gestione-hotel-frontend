@@ -8,6 +8,7 @@ import { CameraListComponent } from './pages/camera-list/camera-list.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CameraEditComponent } from './camera-edit/camera-edit.component';
 import { HotelListComponent } from './pages/hotel-list/hotel-list.component';
+import { PrenotazioneFormComponent } from './pages/prenotazione-form/prenotazione-form.component';
 
 export const routes: Routes = [
     {path: "", component: NoFrameComponent, children:[
@@ -20,7 +21,9 @@ export const routes: Routes = [
         {path:"padre", component: PadreComponent},
         {path:"hotel", component: HotelListComponent},
         { path:'camere', component: CameraListComponent },
-        { path: 'camere/modifica/:id', component: CameraEditComponent }
+        { path: 'camere/modifica/:id', component: CameraEditComponent },
+        { path: 'prenotazioni/nuova', component: PrenotazioneFormComponent}
+  
         
     ]},
     {path:"**", redirectTo: "/error", pathMatch: 'full'}

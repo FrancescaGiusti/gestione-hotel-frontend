@@ -1,12 +1,12 @@
- import { CameraDto } from "./camera-dto";
- import { UtenteDto } from "./utente-dto";
+import { CameraRef } from "./camera-ref";
+import { UtenteRef } from "./utente-ref";
 
  export interface PrenotazioneDto {
     id?: number;
-    utente: UtenteDto;
-    camera?: CameraDto;
-    dataDiPrenotazione: string;
+    utente?: UtenteRef;
+    camera?: CameraRef;
+    dataDiPrenotazione?: string;
     dataInizioSoggiorno: string;
     dataFineSoggiorno: string;
-    annullata?: string;
+    annullata?: boolean;
  }

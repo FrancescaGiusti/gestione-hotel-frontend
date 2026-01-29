@@ -6,6 +6,8 @@ import { CameraFiltroDto } from '../../dto/camera-filtro-dto';
 import { TipoCamera } from '../../dto/tipo-camera';
 import { CameraPatchDto } from '../../dto/camera-patch-dto';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PrenotazioneService } from '../../services/prenotazione.service';
+import { PrenotazioneDto } from '../../dto/prenotazione-dto';
 
 @Component({
   selector: 'app-camera-list',
@@ -24,7 +26,7 @@ export class CameraListComponent implements OnInit {
   size: number = 10;
 
 
-  constructor(private cameraService: CameraService,private router: Router, private route: ActivatedRoute) {}
+  constructor(private cameraService: CameraService,private router: Router, private route: ActivatedRoute, private prenotazioneService: PrenotazioneService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -133,6 +135,11 @@ export class CameraListComponent implements OnInit {
 
   vaiAModifica(id: number) {
   this.router.navigate(['/logged/camere/modifica', id]);
+  }
+
+  prenota(camera: CameraDto) {
+    this.router.navigate(['/logged/prenotazioni/nuova'],
+    { queryParams: { cameraId: camera.id } });
   }
 
 }

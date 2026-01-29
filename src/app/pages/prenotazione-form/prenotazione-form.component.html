@@ -1,0 +1,11 @@
+<h2>Nuova Prenotazione</h2>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<label>Data inizio</label>
+<input type="date" [(ngModel)]="prenotazione.dataInizioSoggiorno" [min]="today">
+
+<label>Data fine</label>
+<input type="date" [(ngModel)]="prenotazione.dataFineSoggiorno" [min]="prenotazione.dataInizioSoggiorno || today">
+
+<button class="btn-primary" (click)="salva()">Prenota</button>

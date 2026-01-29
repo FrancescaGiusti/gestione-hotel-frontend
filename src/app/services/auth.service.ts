@@ -58,4 +58,16 @@ export class AuthService {
     this.removeToken();
     this.router.navigate(['/login']);
   }
+
+  getUserId(): number | null {
+     const token = this.getToken();
+     console.log('TOKEN:', token);
+
+    if (!token) return null;
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    console.log('PAYLOAD JWT:', payload);
+
+    return payload.userId ?? null;
+  }
 }
