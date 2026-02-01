@@ -2,6 +2,9 @@
 
 <div *ngIf="loading">Caricamento...</div>
 <div *ngIf="error">Errore nel caricamento delle camere</div>
+<div *ngIf="deleteErrorMessage" class="error-box">
+   Non puoi eliminare la camera: {{ deleteErrorMessage }}
+</div>
 
 <label for="tipoCamera">Tipo Camera:</label>
 <select id="tipoCamera" #tipoSelect (change)="filtraPerTipo(tipoSelect.value)">
@@ -21,7 +24,6 @@
       <th>Occupanti</th>
       <th>Prezzo</th>
       <th>Hotel</th>
-      <th>Prenotazioni</th>
       <th>Azioni</th>
     </tr>
   </thead>
@@ -33,19 +35,6 @@
       <td>{{camera.maxOcppupanti}}</td>
       <td>{{ camera.prezzoPerNotte }}</td>
       <td>{{camera.hotel?.nome}}</td>
-      <td>
-    <div *ngIf="(camera.prenotazioni?.length ?? 0) > 0; else noPrenotazioni">
-      <ul class="prenotazioni-preview">
-        <li *ngFor="let p of camera.prenotazioni">
-          {{ p.dataInizioSoggiorno }} → {{ p.dataFineSoggiorno }}
-        </li>
-      </ul>
-    </div>
-
-    <ng-template #noPrenotazioni>
-      <em>Nessuna prenotazione</em>
-    </ng-template>
-  </td>
       <td>
         <button class="btn-primary" (click)="prenota(camera)">
       Prenota

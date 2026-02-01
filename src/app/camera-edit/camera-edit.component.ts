@@ -30,7 +30,8 @@ export class CameraEditComponent implements OnInit{
   caricaCamera(id: number) {
     this.cameraService.getCameraById(id).subscribe({
       next: (camera) => {
-        this.camera = { ...camera };
+        this.camera = camera;
+        console.log(this.camera);
         this.loading = false;
       },
       error: () => this.loading = false
@@ -41,7 +42,7 @@ confermaModifica() {
   this.cameraService.updateCamera(this.camera)
     .subscribe({
       next: () => {
-        this.router.navigate(['logged/camere']);
+        this.router.navigate(['logged/camere'], {queryParams : {hotelId: this.camera.hotel?.id}});
       }
     });
 }

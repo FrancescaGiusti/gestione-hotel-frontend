@@ -25,6 +25,7 @@ export class CameraListComponent implements OnInit {
   page: number = 0;
   size: number = 10;
 
+  deleteErrorMessage: string | null = null;
 
   constructor(private cameraService: CameraService,private router: Router, private route: ActivatedRoute, private prenotazioneService: PrenotazioneService) {}
 
@@ -103,9 +104,16 @@ export class CameraListComponent implements OnInit {
       console.error('ID della camera non definito');
       return;
     }
+    this.deleteErrorMessage = null;
     this.cameraService.deleteCamera(id).subscribe({
       next: () => this.caricaCamere(),
-      error: (err) => console.error(err)
+      error: (err) => {
+        if (err.status === 409 && err.error?.message) {
+        this.deleteErrorMessage = err.error.message;
+      } else {
+        this.deleteErrorMessage = 'Errore durante la cancellazione della camera';
+      }
+      }
     });
   }
 
@@ -139,7 +147,10 @@ export class CameraListComponent implements OnInit {
 
   prenota(camera: CameraDto) {
     this.router.navigate(['/logged/prenotazioni/nuova'],
-    { queryParams: { cameraId: camera.id } });
+    { queryParams: { 
+      cameraId: camera.id, 
+      hotelId: camera.hotel?.id
+    } });
   }
 
 }

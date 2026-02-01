@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrenotazioneDto } from '../../dto/prenotazione-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrenotazioneService } from '../../services/prenotazione.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule, formatDate } from '@angular/common';
 
@@ -15,6 +15,8 @@ import { CommonModule, formatDate } from '@angular/common';
 export class PrenotazioneFormComponent implements OnInit{
   
   cameraId!: number;
+  hotelId!: number;
+
 
   prenotazione: PrenotazioneDto = {
     dataInizioSoggiorno: '',
@@ -33,6 +35,7 @@ export class PrenotazioneFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.cameraId = +this.route.snapshot.queryParamMap.get('cameraId')!; 
+    this.hotelId = +this.route.snapshot.queryParamMap.get('hotelId')!;
 
     this.today = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
   }
@@ -57,7 +60,7 @@ salva() {
     this.prenotazioneService.addPrenotazione(this.prenotazione)
       .subscribe({
         next: () => {
-          this.router.navigate(['/logged/camere']);
+          this.router.navigate(['/logged/camere'], { queryParams: { hotelId: this.hotelId} });
         },
         error: (err) => {
           console.error(err);
