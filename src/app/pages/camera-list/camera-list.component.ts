@@ -7,7 +7,6 @@ import { TipoCamera } from '../../dto/tipo-camera';
 import { CameraPatchDto } from '../../dto/camera-patch-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrenotazioneService } from '../../services/prenotazione.service';
-import { PrenotazioneDto } from '../../dto/prenotazione-dto';
 
 @Component({
   selector: 'app-camera-list',

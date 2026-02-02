@@ -48,7 +48,7 @@ confermaModifica() {
 }
 
 annulla() {
-  this.router.navigate(['logged/camere']);
+  this.router.navigate(['logged/camere'], { queryParams: {hotelId: this.camera.hotel?.id}});
 }
 
 }

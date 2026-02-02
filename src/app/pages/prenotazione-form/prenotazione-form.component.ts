@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrenotazioneDto } from '../../dto/prenotazione-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrenotazioneService } from '../../services/prenotazione.service';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule, formatDate } from '@angular/common';
 

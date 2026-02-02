@@ -47,7 +47,7 @@ export class AuthService {
     const exp = this.getTokenExpiration(token);
     if (!exp) return;
 
-    const timeout = exp - Date.now();
+    const timeout = (exp * 1000) - Date.now();
 
     this.logoutTimer = setTimeout(() => {
       this.logout();
@@ -65,9 +65,8 @@ export class AuthService {
 
     if (!token) return null;
 
-    const payload = JSON.parse(atob(token.split('.')[1]));
+    const payload = this.getTokenPayload(token);
     console.log('PAYLOAD JWT:', payload);
-
     return payload.userId ?? null;
   }
 }
