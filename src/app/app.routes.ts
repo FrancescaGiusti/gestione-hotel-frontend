@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { CameraEditComponent } from './camera-edit/camera-edit.component';
 import { HotelListComponent } from './pages/hotel-list/hotel-list.component';
 import { PrenotazioneFormComponent } from './pages/prenotazione-form/prenotazione-form.component';
+import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
     {path: "", component: NoFrameComponent, children:[
@@ -19,7 +20,7 @@ export const routes: Routes = [
         { path:"", redirectTo: "hotel", pathMatch: 'full'},
         { path:"hotel", component: HotelListComponent },
         { path:'camere', component: CameraListComponent },
-        { path: 'camere/modifica/:id', component: CameraEditComponent },
+        { path: 'camere/modifica/:id', component: CameraEditComponent, canActivate: [AuthGuard, RoleGuard] },
         { path: 'prenotazioni/nuova', component: PrenotazioneFormComponent}
   
         

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { RuoloDto } from '../dto/ruolo-dto';
+import { Codice } from '../dto/codice';
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +70,25 @@ export class AuthService {
     const payload = this.getTokenPayload(token);
     console.log('PAYLOAD JWT:', payload);
     return payload.userId ?? null;
+  }
+
+  getUserRoles(): Codice[] {
+    const token = this.getToken();
+    if (!token) {
+      return [];
+    }
+
+    const payload = this.getTokenPayload(token);
+  
+    return payload?.role?.map((r: any) => r.authority)?? [];
+  }
+
+  hasRole(role: Codice): boolean {
+    return this.getUserRoles().includes(role);
+  }
+
+  hasAnyRole(roles: Codice[]): boolean {
+    const userRoles = this.getUserRoles();
+    return roles.some(r => userRoles.includes(r));
   }
 }

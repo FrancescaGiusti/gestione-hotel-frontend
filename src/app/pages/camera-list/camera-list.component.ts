@@ -7,6 +7,8 @@ import { TipoCamera } from '../../dto/tipo-camera';
 import { CameraPatchDto } from '../../dto/camera-patch-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PrenotazioneService } from '../../services/prenotazione.service';
+import { Codice } from '../../dto/codice';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-camera-list',
@@ -15,6 +17,7 @@ import { PrenotazioneService } from '../../services/prenotazione.service';
   styleUrl: './camera-list.component.scss'
 })
 export class CameraListComponent implements OnInit {
+[x: string]: any;
 
   camere: CameraDto[] = [];
   loading = false;
@@ -23,10 +26,11 @@ export class CameraListComponent implements OnInit {
   filtro: CameraFiltroDto = {};
   page: number = 0;
   size: number = 10;
+  Codice = Codice;
 
   deleteErrorMessage: string | null = null;
 
-  constructor(private cameraService: CameraService,private router: Router, private route: ActivatedRoute, private prenotazioneService: PrenotazioneService) {}
+  constructor(private cameraService: CameraService,private router: Router, private route: ActivatedRoute, private prenotazioneService: PrenotazioneService, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

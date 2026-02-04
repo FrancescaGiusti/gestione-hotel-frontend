@@ -39,11 +39,12 @@
         <button class="btn-primary" (click)="prenota(camera)">
       Prenota
     </button>
-        <button class="btn-danger" (click)="cancellaCamera(camera.id!)">Elimina</button>
-        <button class="btn-secondary" (click)="vaiAModifica(camera.id!)">
+        <button class="btn-danger" *ngIf="authService.hasRole(Codice.ROLE_ADMIN)" (click)="cancellaCamera(camera.id!)">Elimina</button>
+        <button class="btn-secondary" *ngIf="authService.hasRole(Codice.ROLE_ADMIN)" (click)="vaiAModifica(camera.id!)">
           Modifica
         </button>
         <button class="btn-primary"
+        *ngIf="authService.hasRole(Codice.ROLE_ADMIN)"
           (click)="modificaParzialeCamera(camera.id!, { prezzoPerNotte: camera.prezzoPerNotte + 10 })">
           Aumenta prezzo +10
         </button>
